@@ -3,8 +3,11 @@ import 'dart:typed_data';
 import 'package:crclib/catalog.dart';
 
 class Message {
+  // ignore: non_constant_identifier_names
   static Uint8List TYPE_VERSION = Uint8List.fromList([0x00, 0x00, 0x10, 0x00]);
+  // ignore: non_constant_identifier_names
   static Uint8List TYPE_PORTS = Uint8List.fromList([0x01, 0x00, 0x10, 0x00]);
+  // ignore: non_constant_identifier_names
   static Uint8List TYPE_DATA = Uint8List.fromList([0x02, 0x00, 0x10, 0x00]);
 
   make(Uint8List type, Uint8List data) {

@@ -28,8 +28,12 @@ class _SettingsScreen extends State<SettingsScreen> {
         appBar: AppBar(
           title: Text('Settings'),
         ),
-        body: Consumer3<GyroSettings, AccSettings, DeviceSettings>(builder: (BuildContext context,
-            GyroSettings gyroSettings, AccSettings accSettings, DeviceSettings deviceSettings, Widget child) {
+        body: Consumer3<GyroSettings, AccSettings, DeviceSettings>(builder:
+            (BuildContext context,
+                GyroSettings gyroSettings,
+                AccSettings accSettings,
+                DeviceSettings deviceSettings,
+                Widget child) {
           return ListView(
             children: [
               // ListTile(
@@ -135,23 +139,33 @@ class _SettingsScreen extends State<SettingsScreen> {
                 trailing: Text('${controller.text}'),
               ),
               Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                  child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-                      textColor: Colors.white,
-                      color: Colors.blueAccent,
-                      onPressed: () => clearCachedSettings(accSettings, gyroSettings, deviceSettings),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 10.0),
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blueAccent,
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: BorderSide(color: Colors.blueAccent),
+                          )),
+                      onPressed: () => clearCachedSettings(
+                          accSettings, gyroSettings, deviceSettings),
                       child: Text('Reset to default'))),
+
+              // shape: RoundedRectangleBorder(
+              //   borderRadius: BorderRadius.circular(18.0),
+              // ),
+              // padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              // textColor: Colors.white,
+              // color: Colors.blueAccent,
             ],
           );
         }));
   }
 
-  Future<void> clearCachedSettings(
-      AccSettings accSettings, GyroSettings gyroSettings, DeviceSettings deviceSettings) async {
+  Future<void> clearCachedSettings(AccSettings accSettings,
+      GyroSettings gyroSettings, DeviceSettings deviceSettings) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     bool cleared = await preferences.clear();
     accSettings.clear();

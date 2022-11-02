@@ -105,6 +105,7 @@ class Device {
       this.start();
       this.initGyroSettings();
       this.initAccSettings();
+      // ignore: non_constant_identifier_names
     } catch (Error) {
       print("error");
     }
@@ -139,9 +140,21 @@ class Device {
     accelerometerEvents.listen((AccelerometerEvent event) {
       // Values are in m/s^2, but we need in g's (1 g approx 9.8 m/s^2)
       if (accEnabled) {
-        accX = (invertAccX ? -1 : 1) * accSensitivity * event.x * METER_PER_SECOND_SQUARED_TO_G / 100;
-        accY = (invertAccY ? -1 : 1) * accSensitivity * event.z * METER_PER_SECOND_SQUARED_TO_G / 100;
-        accZ = (invertAccZ ? -1 : 1) * accSensitivity * event.y * METER_PER_SECOND_SQUARED_TO_G / 100;
+        accX = (invertAccX ? -1 : 1) *
+            accSensitivity *
+            event.x *
+            METER_PER_SECOND_SQUARED_TO_G /
+            100;
+        accY = (invertAccY ? -1 : 1) *
+            accSensitivity *
+            event.z *
+            METER_PER_SECOND_SQUARED_TO_G /
+            100;
+        accZ = (invertAccZ ? -1 : 1) *
+            accSensitivity *
+            event.y *
+            METER_PER_SECOND_SQUARED_TO_G /
+            100;
       } else {
         accX = 0;
         accY = 0;
