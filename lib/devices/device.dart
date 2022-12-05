@@ -57,6 +57,7 @@ class Device {
     "MINUS": "button_share",
     "PLUS": "button_options",
     "HOME": "button_ps",
+    "RESET": "button_l3",
   };
 
   var state = {

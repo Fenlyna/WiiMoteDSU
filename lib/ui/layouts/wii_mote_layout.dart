@@ -3,6 +3,7 @@ import 'package:wiimote_dsu/ui/a_b_buttons.dart';
 import 'package:wiimote_dsu/ui/dpad.dart';
 import 'package:wiimote_dsu/ui/minus_home_plus_buttons.dart';
 import 'package:wiimote_dsu/ui/one_two_buttons.dart';
+import 'package:wiimote_dsu/ui/reset_button.dart';
 
 class WiiMoteLayout extends StatelessWidget {
   @override
@@ -25,15 +26,19 @@ class WiiMoteLayout extends StatelessWidget {
               width: screenSize.height * 0.25 / 3,
               height: screenSize.height * 0.25,
             ),
+            ResetButton(
+              width: screenSize.height * 0.25 / 3,
+              height: screenSize.height * 0.1,
+            ),
             SizedBox(
-              height: screenSize.height * 0.2 / 3,
+              height: screenSize.height * 0.005 / 3,
             ),
             MinusHomePlusButtons(
               width: screenSize.height * 0.15,
               height: screenSize.height * 0.15 / 4,
             ),
             SizedBox(
-              height: screenSize.height * 0.2 / 3,
+              height: screenSize.height * 0.1 / 3,
             ),
             OneTwoButtons(
               width: screenSize.height * 0.15 / 2.5,
