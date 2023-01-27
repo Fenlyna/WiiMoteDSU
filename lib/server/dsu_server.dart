@@ -23,14 +23,17 @@ class DSUServer {
   AccSettings accSettings;
   DeviceSettings deviceSettings;
 
-  DSUServer(this.gyroSettings, this.accSettings, this.deviceSettings, {this.portNum = 26760}) {
+  DSUServer(this.gyroSettings, this.accSettings, this.deviceSettings,
+      {this.portNum = 26760}) {
     this.slots[0] = this.deviceSettings.createDevice(this);
     this.deviceSettings.addListener(onDeviceChange);
   }
 
   init() async {
     printSlots();
-    UDP.bind(Endpoint.unicast(InternetAddress.anyIPv4, port: Port(portNum))).then((sock) {
+    UDP
+        .bind(Endpoint.unicast(InternetAddress.anyIPv4, port: Port(portNum)))
+        .then((sock) {
       socket = sock;
       this.start();
     });
@@ -60,7 +63,9 @@ class DSUServer {
 
     for (var i = 0; i < requestsCount; i++) {
       Uint8List ports = this.sendPorts(i);
-      socket.send(ports, Endpoint.unicast(address, port: Port(port))).then((value) {});
+      socket
+          .send(ports, Endpoint.unicast(address, port: Port(port)))
+          .then((value) {});
     }
   }
 
@@ -70,7 +75,10 @@ class DSUServer {
 
     if (flags == 0 && regId == 0) {
       if (!clients.containsKey(address)) {
-        print("[udp] Client connected: " + address.toString() + " on port " + port.toString());
+        print("[udp] Client connected: " +
+            address.toString() +
+            " on port " +
+            port.toString());
       }
 
       clients[address] = port;
@@ -263,7 +271,9 @@ class DSUServer {
 
   reportToClients(Uint8List message) {
     clients.forEach((address, port) {
-      socket.send(message, Endpoint.unicast(address, port: Port(port))).then((value) {});
+      socket
+          .send(message, Endpoint.unicast(address, port: Port(port)))
+          .then((value) {});
     });
   }
 
@@ -310,15 +320,19 @@ class DSUServer {
     debugPrint("Registered device: Slot[$slot] ${device.deviceName}");
   }
 
-  factory DSUServer.make(GyroSettings gyroSettings, AccSettings accSettings, DeviceSettings deviceSettings,
+  factory DSUServer.make(GyroSettings gyroSettings, AccSettings accSettings,
+      DeviceSettings deviceSettings,
       {int portNum = 26760}) {
-    DSUServer server = DSUServer(gyroSettings, accSettings, deviceSettings, portNum: portNum);
+    DSUServer server =
+        DSUServer(gyroSettings, accSettings, deviceSettings, portNum: portNum);
     server.init();
     return server;
   }
 
-  factory DSUServer.mock(GyroSettings gyroSettings, AccSettings accSettings, DeviceSettings deviceSettings,
+  factory DSUServer.mock(GyroSettings gyroSettings, AccSettings accSettings,
+      DeviceSettings deviceSettings,
       {int portNum = 26760}) {
-    return DSUServer(gyroSettings, accSettings, deviceSettings, portNum: portNum);
+    return DSUServer(gyroSettings, accSettings, deviceSettings,
+        portNum: portNum);
   }
 }

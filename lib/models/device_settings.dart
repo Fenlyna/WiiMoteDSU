@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wiimote_dsu/devices/classic_device.dart';
 import 'package:wiimote_dsu/devices/device.dart';
 import 'package:wiimote_dsu/devices/only_dpad_device.dart';
 import 'package:wiimote_dsu/devices/wii_mote_device.dart';
 import 'package:wiimote_dsu/server/dsu_server.dart';
+import 'package:wiimote_dsu/ui/layouts/classic_control_layout.dart';
 
 class DeviceSettings extends ChangeNotifier {
   static const List<String> available = [
     WiiMoteDevice.name,
-    OnlyDpadDevice.name
+    OnlyDpadDevice.name,
+    ClassicDevice.name
   ];
 
   SharedPreferences preferences;
@@ -32,6 +35,9 @@ class DeviceSettings extends ChangeNotifier {
         break;
       case OnlyDpadDevice.name:
         return OnlyDpadDevice(server);
+        break;
+      case ClassicDevice.name:
+        return ClassicDevice(server);
         break;
       default:
         return WiiMoteDevice(server);

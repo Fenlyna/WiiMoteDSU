@@ -4,7 +4,7 @@ import 'package:wiimote_dsu/ui/dpad.dart';
 import 'package:wiimote_dsu/ui/joystick_left.dart';
 import 'package:wiimote_dsu/ui/joystick_right.dart';
 
-class OnlyDpadLayout extends StatelessWidget {
+class ClassicLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -19,7 +19,24 @@ class OnlyDpadLayout extends StatelessWidget {
               height: screenSize.height * 0.9 / 3,
             ),
             SizedBox(
-              height: screenSize.height * 0.9 / 3,
+              height: screenSize.height * 0.1 / 3,
+            ),
+            RotatedBox(
+              quarterTurns: 1,
+              child: Dpad(
+                width: screenSize.height * 0.5 / 3,
+                height: screenSize.height * 0.5 / 3,
+              ),
+            ),
+            SizedBox(
+              height: screenSize.height * 0.1 / 3,
+            ),
+            RotatedBox(
+              quarterTurns: 1,
+              child: ABXYButtons(
+                width: screenSize.height * 0.5 / 3,
+                height: screenSize.height * 0.5 / 3,
+              ),
             ),
             JoystickRight(
               height: screenSize.height * 0.9 / 3,

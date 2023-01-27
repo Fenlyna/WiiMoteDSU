@@ -1,4 +1,4 @@
-package nl.dijkitech.wiimote_dsu
+package org.nastasia.wiimotedsu
 
 import io.flutter.embedding.android.FlutterActivity
 
